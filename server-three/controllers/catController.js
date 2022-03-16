@@ -12,3 +12,9 @@ export const cat_get = async (req, res) => {
   });
   res.send(chosenCat);
 };
+
+export const cat_post = async (req, res) => {
+  //console.log(req.data);
+  console.log(req.file);
+  res.send(req.file)
+};
