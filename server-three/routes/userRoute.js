@@ -2,15 +2,17 @@
 
 import {Router} from 'express';
 
-import {user_get, user_list_get} from '../controllers/userController.js';
+import {
+  user_get,
+  user_list_get,
+  user_post,
+} from '../controllers/userController.js';
 
 const router = Router()
 
 router.route('/').
     get(user_list_get).
-    post((req, res) => {
-      res.send('User post test');
-    }).
+    post(user_post).
     put((req, res) => {
       res.send('User put test');
     }).
