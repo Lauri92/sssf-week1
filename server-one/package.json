@@ -1,7 +1,7 @@
 {
-  "name": "sssf-tasks",
+  "name": "sssf-week1",
   "version": "1.0.0",
-  "description": "",
+  "description": "week1 tasks",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,5 +13,6 @@
   "type": "module",
   "dependencies": {
     "express": "^4.17.3"
-  }
+  },
+  "devDependencies": {}
 }
