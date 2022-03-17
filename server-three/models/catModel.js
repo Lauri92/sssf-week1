@@ -18,4 +18,6 @@ const cats = [
   },
 ];
 
-export default cats
+export {
+  cats,
+};
