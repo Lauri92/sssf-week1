@@ -1,11 +1,46 @@
 'use strict';
 import passport from 'passport';
 import {Strategy} from 'passport-local';
-import passportJWT from 'passport-jwt'
-const JWTStrategy = passportJWT.Strategy
-const ExtractJWT = passportJWT.ExtractJwt
+import passportJWT from 'passport-jwt';
+
+const JWTStrategy = passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt;
 import {getUserLogin} from '../models/userModel.js';
 
+// serialize: store user id in session
+passport.serializeUser((user, done) => {
+  console.log('serialize', user);
+  // serialize user id by adding it to 'done()' callback
+  done(null, user);
+});
+
+// deserialize: get user from session and get all user data
+passport.deserializeUser(async (user, done) => {
+  console.log('deserialize', user);
+  // deserialize user by adding it to 'done()' callback
+  done(null, user);
+});
+
+passport.use(new Strategy(
+    (username, password, done) => {
+      // get user by username (in this case email) from userModel/getUserLogin
+      const user = getUserLogin(username);
+      console.log(user);
+      // if user is undefined
+      if (!user) {
+        return done(null, false);
+      }
+      // if passwords dont match
+      if (password !== user.password) {
+        return done(null, false);
+      }
+      // if all is ok
+      delete user.password;
+      return done(null, user);
+    },
+));
+
+/*
 // local strategy for username password login
 passport.use(new Strategy(
     async (username, password, done) => {
@@ -44,5 +79,5 @@ passport.use(new JWTStrategy({
       }
     },
 ));
-
+*/
 export default passport;

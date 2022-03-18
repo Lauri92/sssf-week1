@@ -16,8 +16,8 @@ const users = [
 
 const getUserLogin = (email) => {
   return users.filter((usr) => {
-    return email[0] === usr.email;
-  });
+    return email === usr.email;
+  })[0];
 };
 
 export {
