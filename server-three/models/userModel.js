@@ -14,6 +14,13 @@ const users = [
   },
 ];
 
+const getUserLogin = (email) => {
+  return users.filter((usr) => {
+    return email[0] === usr.email;
+  });
+};
+
 export {
   users,
+  getUserLogin,
 };
