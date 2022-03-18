@@ -7,6 +7,7 @@ const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 import {getUserLogin} from '../models/userModel.js';
 
+/*
 // serialize: store user id in session
 passport.serializeUser((user, done) => {
   console.log('serialize', user);
@@ -39,8 +40,9 @@ passport.use(new Strategy(
       return done(null, user);
     },
 ));
+*/
 
-/*
+
 // local strategy for username password login
 passport.use(new Strategy(
     async (username, password, done) => {
@@ -79,5 +81,5 @@ passport.use(new JWTStrategy({
       }
     },
 ));
-*/
+
 export default passport;

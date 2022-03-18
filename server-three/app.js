@@ -12,17 +12,18 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 const port = 3000;
-
+/*
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
   cookie: {secure: false},
 }));
-
+*/
 app.use(passport.initialize({}));
-app.use(passport.session({}));
+//app.use(passport.session({}));
 
+/*
 const loggedIn = (req, res, next) => {
   if (req.user) {
     next();
@@ -30,11 +31,12 @@ const loggedIn = (req, res, next) => {
     res.status(403).json({message: 'Please login'});
   }
 };
+ */
 
-//app.use('/cat', /*passport.authenticate('jwt', {session: false}),*/ catRoute);
-//app.use('/user', /*passport.authenticate('jwt', {session: false}),*/ userRoute);
-app.use('/cat', loggedIn, catRoute);
-app.use('/user', loggedIn, userRoute);
+app.use('/cat', passport.authenticate('jwt', {session: false}), catRoute);
+app.use('/user', passport.authenticate('jwt', {session: false}), userRoute);
+//app.use('/cat', loggedIn, catRoute);
+//app.use('/user', loggedIn, userRoute);
 app.use('/auth', authRoute);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
